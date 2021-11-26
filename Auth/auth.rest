@@ -1,0 +1,40 @@
+POST http://localhost:4000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "name",
+    "email": "test@test.com",
+    "password": "pass123"
+}
+
+###
+
+POST http://localhost:4000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "pass123"
+}
+
+###
+
+GET http://localhost:4000/api/auth/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
+###
+
+POST http://localhost:4000/api/auth/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5ODMwNH0.KZh17kIbWHHtWhXTsIwHOY70D4DbflRzseUvnSd3h3E"
+}
+
+### 
+
+DELETE http://localhost:4000/api/auth/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWUwMjJmZDVjYzk3YTFhMDEyODg5NiIsImlhdCI6MTYzNzc1Nzg2NywiZXhwIjoxNjM3NzU3ODk3fQ.RTHZo6kW9kRwNIdax4LBod1oiQVpRxFMNxYKaRKW5Xw"
+}
