@@ -1,0 +1,18 @@
+Final project - restaurant orders
+
+Authentication - JWT
+Authorization - Seperate Roles with different authentization for customers and manager,
+    fake users can be reported and blocked
+Languages - Support 3 Languages, customer can make an order in one language and the restaurant can 
+            get it in another language.
+Socket.io - restaurant will get notifications about new orders.
+Emails - Restaurant will get emails about new orders.
+MoongoDB tables - Users, Roles (manager, customer), meals, additions, orders, calls (Bill, waiter) ....
+Cache - Managing cached data (maybe redis),
+Stock - meals with no ingridiants should not be displayed to the users.
+Menu - Manager can add/reomve items to the menu, or update quantity
+Manager can add users and grant them autherization to the restaurant page.
+
+
+
+

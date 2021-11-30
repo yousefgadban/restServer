@@ -1,0 +1,128 @@
+
+POST http://localhost:4000/api/restaurant/addNewRestaurant
+Content-Type: application/json
+
+{
+    "name": "rest2",
+    "name_en": "rest2_en",
+    "name_ar": "rest2_ar",
+    "name_he": "rest2_he",
+    "location": "location2",
+    "location_en": "location2_en",
+    "location_ar": "location2_ar",
+    "location_he": "location2_he",
+    "active": true
+}
+
+###
+
+// 61a53362b581473c7c5f5d71
+// 61a5dbd968f3bff203f59f2b
+
+POST http://localhost:4000/api/restaurant/addNewCategory
+Content-Type: application/json
+
+{
+    "restaurantID": "61a53362b581473c7c5f5d71",
+    "name": "Dessert",
+    "name_en": "Dessert",
+    "name_ar": "حلوى",
+    "name_he": "קינוח"
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addNewItem
+Content-Type: application/json
+
+{
+    "restaurantID": "61a53362b581473c7c5f5d71",
+    "name": "Cappuccino",
+    "name_en": "Cappuccino",
+    "name_ar": "كابتشينو",
+    "name_he": "קפוצ'ינו",
+    "price": 7,
+    "quantity": 3,
+    "url": "https://media.istockphoto.com/photos/cup-of-cafe-latte-with-coffee-beans-and-cinnamon-sticks-picture-id505168330?b=1&k=20&m=505168330&s=170667a&w=0&h=jJTePtpYZLR3M2OULX5yoARW7deTuAUlwpAoS4OriJg=",
+    "active": true
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addNewAddition
+Content-Type: application/json
+
+{
+    "restaurantID": "61a53362b581473c7c5f5d71",
+    "name": "addition1",
+    "name_en": "addition1_en",
+    "name_ar": "addition1_ar",
+    "name_he": "addition1_he",
+    "singleChoice": true
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addNewAdditionItem
+Content-Type: application/json
+
+{
+    "restaurantID": "61a53362b581473c7c5f5d71",
+    "name": "additionItem2",
+    "name_en": "additionItem2_en",
+    "name_ar": "additionItem2_ar",
+    "name_he": "additionItem2_he",
+    "isDefault": true,
+    "price": 5,
+    "quantity": 15
+}
+
+
+### 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 61a53362b581473c7c5f5d71
+// 61a5dbd968f3bff203f59f2b
+
+GET http://localhost:4000/api/restaurant/getSearch
+
+###
+
+GET http://localhost:4000/api/restaurant/getRestaurantData/61a53362b581473c7c5f5d71
+
+### 
+
+POST http://localhost:4000/api/restaurant/addCategoryToRestaurant/61a53362b581473c7c5f5d71
+Content-Type: application/json
+
+{
+    "categoryID": "61a5dd6f68f3bff203f59f33"
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addItemToCategory/61a5dcb468f3bff203f59f2f
+Content-Type: application/json
+
+{
+    "itemId": "61a5e22168f3bff203f59f4f"
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addAdditionToItem/61a53d450a35401b410d7b46
+Content-Type: application/json
+
+{
+    "additionId": "61a5d1f5f6182a39449714b5"
+}
+
+###
+
+POST http://localhost:4000/api/restaurant/addItemAdditionToAddition/61a5d1f5f6182a39449714b5
+Content-Type: application/json
+
+{
+    "additionItemId": "61a5d89368f3bff203f59f20"
+}

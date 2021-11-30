@@ -13,11 +13,20 @@ app.use(cors())
 
 
 
-/////////////////////////////////////////// ROUTES //////////////////////////////////////////////
+/////////////////////////////////////////// ROUTES //////////////////////////////////////////////////////////
 
 const authRouter = require('./Auth/auth.route')
 app.use('/api/auth', authRouter)
 
+const searchRouter = require('./Search/search.route')
+app.use('/api/search', searchRouter)
+
+const restaurantRouter = require('./Restaurant/restaurant.route')
+app.use('/api/restaurant', restaurantRouter)
+
+
+
+/////////////////////////////////////////// MONGO, SOCKET, SERVER //////////////////////////////////////////////
 
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_KEY}@cluster0.szbva.mongodb.net/FinalDatabase?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true}, () => {
     console.log('Connected to DB ');

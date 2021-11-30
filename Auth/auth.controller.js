@@ -77,14 +77,29 @@ const register = async (req, res) => {
                 name: name,
                 email: email,
                 password: hashedPassword,
-                isActive: true
+                isActive: true,
+                rating: 0
             });
             newUser.save((err, data) => {
                 if (err) {
                     res.status(401).send({result: 'error', data: 'Something wrong!'});
                     throw err;
                 } else {
-                    res.status(201).send(data);
+                    const accessToken = generateAccessToken(data._id);
+                    const refreshToken = jwt.sign({id: data._id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: RT_EXP});
+
+                    const newRefreshToken = new refreshTokenModel({
+                        refreshToken: refreshToken
+                    });
+                    newRefreshToken.save((err, data) => {
+                        if (err) {
+                            res.status(401).send({result: 'error', data: 'Something wrong!'});
+                            throw err;
+                        } else {
+                            res.status(201).send({ result: 'success', data: {accessToken, refreshToken} });
+                        }
+                    });
+                    //res.status(201).send(data);
                 }
             });
         } else {
