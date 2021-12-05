@@ -5,13 +5,13 @@ const refreshTokenModel = require('./token.model').refreshTokenModel;
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const AT_EXP = '15s';
-const RT_EXP = '25s';
+const AT_EXP = '1115s';
+const RT_EXP = '2225s';
 
 const login = async (req, res) => {
     const {email, password} = req.body;
     console.log(email, password);
-    
+     
     if (!validator.isEmail(email)) {
         res.status(401).send({ result: 'error', data: 'Invalid input' });
     } else {
@@ -133,6 +133,26 @@ const getUsers = async (req, res) => {
     res.status(200).send({ result: 'success', data: "getUsers" });
 }
 
+const getUserInfo = async (req, res) => {
+    console.log('getUserInfo', req.user);
+    userModel.findOne({_id: req.user.id}).lean().exec(function(err, data) {
+        if (err) {
+            res.status(404).send({ result: 'error', data: "user not found" });
+        } 
+        res.status(200).send({ result: 'success', data: data });
+    });
+}
+
+const addRestaurantToUser = async (req, res) => {
+    const {userID, restaurantID} = req.body;
+    console.log('addRestaurantToUser', userID, restaurantID);
+    let user = await userModel.findOne({_id: userID})
+    user.restaurants.push(restaurantID);
+    user.save();
+    
+    res.status(200).send({ result: 'success', data: 'success' });
+}
+
 const token = async (req, res) => {
     const authHeader = req.headers['authorization']
     const refreshToken = authHeader && authHeader.split(' ')[1]
@@ -241,5 +261,7 @@ module.exports = {
     test,
     token,
     logout,
-    getUsers
+    getUsers,
+    getUserInfo,
+    addRestaurantToUser
 }

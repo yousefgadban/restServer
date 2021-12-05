@@ -24,7 +24,11 @@ app.use('/api/search', searchRouter)
 const restaurantRouter = require('./Restaurant/restaurant.route')
 app.use('/api/restaurant', restaurantRouter)
 
+const callsRouter = require('./Call/call.route')
+app.use('/api/calls', callsRouter)
 
+const orderRouter = require('./Order/order.route')
+app.use('/api/orders', orderRouter)
 
 /////////////////////////////////////////// MONGO, SOCKET, SERVER //////////////////////////////////////////////
 
@@ -47,3 +51,7 @@ socketController.start(io);
 
 const PORT = process.env.PORT || 4000
 server.listen(PORT)
+
+module.exports = {
+    io
+}

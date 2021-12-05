@@ -1,0 +1,14 @@
+GET http://localhost:4000/api/orders/getOrders/61a53362b581473c7c5f5d71
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
+
+###
+
+POST http://localhost:4000/api/orders/addNewOrder
+Content-Type: application/json
+
+{
+    "service": "order",
+    "table": "table1",
+    "name": "yousef",
+    "restaurantID": "61a53362b581473c7c5f5d71"
+}

@@ -31,6 +31,16 @@ router.get('/getUsers', authenticateToken, (req,res) => {
     authController.getUsers(req,res)
 });
 
+router.get('/getUserInfo', authenticateToken, (req,res) => {
+    authController.getUserInfo(req,res)
+});
+
+
+router.post('/addRestaurantToUser', (req,res) => {
+    authController.addRestaurantToUser(req,res)
+});
+
+
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]

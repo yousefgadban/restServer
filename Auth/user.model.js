@@ -19,7 +19,12 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: true
-    }
+    },
+    rating: {
+        type: Number,
+        default: 0
+    }, 
+    restaurants: [ {type : mongoose.Schema.ObjectId, ref : 'restaurant'} ]
 });
 
 // validate: {

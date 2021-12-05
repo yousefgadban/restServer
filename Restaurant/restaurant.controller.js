@@ -3,6 +3,7 @@ const categoryModel = require('./restaurant.model').categoryModel;
 const itemModel = require('./restaurant.model').itemModel;
 const additionModel = require('./restaurant.model').additionModel;
 const additionItemModel = require('./restaurant.model').additionItemModel;
+const userModel = require('../Auth/user.model').userModel;
 
 
 
@@ -168,7 +169,7 @@ const getRestaurantData = async (req, res) => {
     const id = req.params.id
     console.log('getRestaurantData', id);
     try {
-        const data = await restaurantModel.find({_id: id}).populate({
+        const data = await restaurantModel.findOne({_id: id}).populate({
             path: 'categories',
             populate: {
                 path: 'items', 
@@ -256,12 +257,25 @@ const addItemAdditionToAddition = async (req, res) => {
         res.status(401).send({result: 'error', data: 'Something wrong!'});
     }
 }
-
+ 
 
 const getSearch = async (req, res) => {
-    console.log('getSearch');
+    console.log('getSearch', req.user);
     try {
         const search = await restaurantModel.find({active: true}).select({"name":1, "name_en":1, "name_ar":1, "name_en":1, "name_he":1});
+        res.status(200).send({result: 'success', data: search});
+    } catch (e) {
+        console.log('errorr', e);
+        res.status(401).send({result: 'error', data: 'Something wrong!'});
+    }
+}
+
+const getUserRestaurants = async (req, res) => {
+    console.log('getUserRestaurants', req.user);
+    const userID = req.user.id;
+
+    try {
+        const search = await userModel.findOne({_id: userID, isActive: true}).populate('restaurants');
         res.status(200).send({result: 'success', data: search});
     } catch (e) {
         console.log('errorr', e);
@@ -281,5 +295,6 @@ module.exports = {
     addItemToCategory,
     addAdditionToItem,
     addItemAdditionToAddition,
-    getSearch
+    getSearch,
+    getUserRestaurants
 }

@@ -21,6 +21,7 @@ Content-Type: application/json
 
 GET http://localhost:4000/api/auth/test
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
+
 ###
 
 POST http://localhost:4000/api/auth/token
@@ -37,4 +38,20 @@ Content-Type: application/json
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWUwMjJmZDVjYzk3YTFhMDEyODg5NiIsImlhdCI6MTYzNzc1Nzg2NywiZXhwIjoxNjM3NzU3ODk3fQ.RTHZo6kW9kRwNIdax4LBod1oiQVpRxFMNxYKaRKW5Xw"
+}
+
+###
+
+GET http://localhost:4000/api/auth/getUserInfo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
+
+###
+
+POST http://localhost:4000/api/auth/addRestaurantToUser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
+Content-Type: application/json
+
+{
+    "userID": "61a7d01254664e98df866e16",
+    "restaurantID": "61a53362b581473c7c5f5d71"
 }

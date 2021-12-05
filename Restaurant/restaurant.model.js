@@ -37,6 +37,10 @@ const restaurantSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    urls: {
+        type: Array,
+        default: []
+    },
     categories: [ {type : mongoose.Schema.ObjectId, ref : 'category'} ]
 });
 

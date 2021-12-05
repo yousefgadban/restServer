@@ -7,6 +7,12 @@ const start = (io) => {
     
         socket.emit('message', 'Welcome');
 
+        socket.on('joinRestaurant', ({restId}) => {
+            console.log('joinRestaurant', restId, socket.id);
+
+            socket.join(restId);
+        });
+
         socket.on("disconnect", () => {
             console.log('Client disconnected ' + socket.id);
         });

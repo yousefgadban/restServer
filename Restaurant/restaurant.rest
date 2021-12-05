@@ -54,10 +54,10 @@ Content-Type: application/json
 
 {
     "restaurantID": "61a53362b581473c7c5f5d71",
-    "name": "addition1",
-    "name_en": "addition1_en",
-    "name_ar": "addition1_ar",
-    "name_he": "addition1_he",
+    "name": "Paid addition",
+    "name_en": "Paid addition",
+    "name_ar": "الإضافات المدفوعة",
+    "name_he": "תוספות בתשלום",
     "singleChoice": true
 }
 
@@ -68,12 +68,12 @@ Content-Type: application/json
 
 {
     "restaurantID": "61a53362b581473c7c5f5d71",
-    "name": "additionItem2",
-    "name_en": "additionItem2_en",
-    "name_ar": "additionItem2_ar",
-    "name_he": "additionItem2_he",
-    "isDefault": true,
-    "price": 5,
+    "name": "cheese",
+    "name_en": "cheese",
+    "name_ar": "جبنة",
+    "name_he": "גבינה",
+    "isDefault": false,
+    "price": 4,
     "quantity": 15
 }
 
@@ -111,18 +111,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:4000/api/restaurant/addAdditionToItem/61a53d450a35401b410d7b46
+POST http://localhost:4000/api/restaurant/addAdditionToItem/61a5de1c68f3bff203f59f37
 Content-Type: application/json
 
 {
-    "additionId": "61a5d1f5f6182a39449714b5"
+    "additionId": "61a646a95989b596b17f6620"
 }
 
 ###
 
-POST http://localhost:4000/api/restaurant/addItemAdditionToAddition/61a5d1f5f6182a39449714b5
-Content-Type: application/json
-
-{
-    "additionItemId": "61a5d89368f3bff203f59f20"
-}
+getUserRestaurants
