@@ -18,7 +18,8 @@ const getCalls = async (req, res) => {
 
 const addNewCall = async (req, res) => {
     const {restaurantID, service, table, name} = req.body;
-    console.log('addNewCall', restaurantID, service, table, name);
+    const userID = req.user.id;
+    console.log('addNewCall', restaurantID, service, table, name, userID);
 
     try {
         const call = new callModel({
@@ -32,9 +33,11 @@ const addNewCall = async (req, res) => {
                 res.status(401).send({result: 'error', data: 'Something wrong!'});
                 throw err;
             } else {
+
                 // socket
                 const io = require('../server').io;
-                io.emit(restaurantID, data );
+                io.emit(`${userID}`, {msg: 'new service commited'} );
+                io.emit(`${restaurantID}-calls`, data );
                 res.status(200).send({ result: 'success', data: data });
             }
         });
@@ -45,8 +48,33 @@ const addNewCall = async (req, res) => {
 }
 
 
+const changeCallStatus = async (req, res) => {
+    const {restaurantID, callID, newStatus} = req.body;
+    console.log('changeCallStatus', restaurantID, callID, newStatus);
+
+    try {
+        const query = {'_id': callID};
+        const updatedData = {status: newStatus}
+        
+        callModel.findOneAndUpdate(query, updatedData, {new: true, runValidators: true}, function(err, data) {
+            if (err) {
+                res.status(401).send({result: 'error', data: 'Something wrong!'});
+                throw err;
+            } else {
+                const io = require('../server').io;
+                io.emit(`${restaurantID}-calls`, data );
+                res.status(200).send({ result: 'success', data: data });
+            }
+        });
+        
+    } catch (e) {
+        console.log('errorr', e);
+        res.status(401).send({result: 'error', data: 'Something wrong!'});
+    }
+}
 
 module.exports = {
     getCalls,
-    addNewCall
+    addNewCall,
+    changeCallStatus
 }

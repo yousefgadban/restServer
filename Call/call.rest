@@ -8,11 +8,18 @@ Content-Type: application/json
 
 {
     "service": "Bill",
-    "table": "table6",
+    "table": "table2",
     "name": "yousef",
     "restaurantID": "61a53362b581473c7c5f5d71"
 }
 
-
-
 ###
+
+PUT http://localhost:4000/api/calls/changeCallStatus
+Content-Type: application/json
+
+{
+    "newStatus": "done",
+    "callID": "61ac76e089a42e288d0393d3" ,
+    "restaurantID": "61a53362b581473c7c5f5d71"
+}

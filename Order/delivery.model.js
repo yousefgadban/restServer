@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
+const deliverySchema = new mongoose.Schema({
     restaurantID: {
         type: mongoose.Schema.ObjectId,
         required: true
@@ -37,12 +37,19 @@ const orderSchema = new mongoose.Schema({
     },
     userID: {
         type: String
+    },
+    orderID: {
+        type: String
+    },
+    senderID: {
+        type: String,
+        default: ""
     }
 });
 
-const orderModel = mongoose.model('order', orderSchema);
+const deliveryModel = mongoose.model('delivery', deliverySchema);
 
 
 module.exports = {
-    orderModel
+    deliveryModel
 }

@@ -7,10 +7,18 @@ const start = (io) => {
     
         socket.emit('message', 'Welcome');
 
-        socket.on('joinRestaurant', ({restId}) => {
-            console.log('joinRestaurant', restId, socket.id);
+        socket.on('joinRestaurantCalls', ({restId}) => {
+            console.log('joinRestaurantCalls', restId, socket.id);
 
-            socket.join(restId);
+            socket.join(`${restId}-calls`);
+        });
+
+        socket.on('joinNotifications', ({userId}) => {
+            console.log('joinNotifications', userId);
+
+            socket.join(`${userId}`);
+
+            //io.emit(`${userId}`, {msg: 'new notification'} );
         });
 
         socket.on("disconnect", () => {

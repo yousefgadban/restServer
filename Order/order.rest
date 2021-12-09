@@ -7,8 +7,28 @@ POST http://localhost:4000/api/orders/addNewOrder
 Content-Type: application/json
 
 {
-    "service": "order",
-    "table": "table1",
+    "delivery": "take",
+    "table": "table2",
     "name": "yousef",
+    "price": 55,
+    "order": [],
     "restaurantID": "61a53362b581473c7c5f5d71"
 }
+
+###
+
+PUT http://localhost:4000/api/orders/changeOrderStatus
+Content-Type: application/json
+
+{
+    "newStatus": "progress",
+    "callID": "61a7a4975ec5d6fd8733f0e2" ,
+    "restaurantID": "61a53362b581473c7c5f5d71"
+}
+
+
+### 
+
+
+GET http://localhost:4000/api/orders/getDeliveries
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI5OTZkZDE0MWYzMTkxOWI5NGExYiIsImlhdCI6MTYzNzU5Nzc0N30.-b5NTtXONSPvj6KovWsZdKKa7--J_4ZaGNwSxLQ5xPI
