@@ -82,12 +82,16 @@ const changeOrderStatus = async (req, res) => {
                 //io.emit(`${data.userID}`, {msg: 'order status changed', newStatus: newStatus} );
 
                 let step = 1;
-                if (data.delivery !== "Delivery") {
+                if (data.delivery !== "Delivery" && data.delivery !== "Take-away") {
                     if(newStatus === 'progress') {
                         step = 2;
                     }
                     if(newStatus === 'done') {
                         step = 3;
+                    }
+                } else if (data.delivery === "Take-away") {
+                    if(newStatus === 'take away') {
+                        step = 2;
                     }
                 } else {
                     if(newStatus === 'delivery') {
@@ -117,7 +121,9 @@ const changeOrderStatus = async (req, res) => {
                     }
                 }
 
-                io.emit(`${data.userID}`, {msg: 'new order commited', delivery: data.delivery, step: step} );
+                if (step !== 1) {
+                    io.emit(`${data.userID}`, {msg: 'new order commited', delivery: data.delivery, step: step} );
+                }
                 res.status(200).send({ result: 'success', data: data });
             }
         });
@@ -127,7 +133,7 @@ const changeOrderStatus = async (req, res) => {
         res.status(401).send({result: 'error', data: 'Something wrong!'});
     }
 }
-
+ 
 
 
 const getDeliveries = async (req, res) => {
@@ -193,12 +199,13 @@ const changeMyOrderStatus = async (req, res) => {
 
                 let step = 1;
                 if (data.delivery === "Take-away") {
-                    if(newStatus === 'progress') {
-                        step = 2;
-                    }
-                    if(newStatus === 'done') {
+                    if(newStatus === 'approved') {
                         step = 3;
+
+                        io.emit(`${data.userID}`, {msg: 'new order commited', delivery: data.delivery, step: step} );
+                        res.status(200).send({ result: 'success', data: data });
                     }
+                    
                 } else if (data.delivery === "Delivery") {
                     if(newStatus === 'approved') {
                         step = 3;
@@ -217,11 +224,12 @@ const changeMyOrderStatus = async (req, res) => {
                                 res.status(200).send({ result: 'success', data: data });
                             }
                         });
-
                     }
                 } else {
-                    res.status(401).send({result: 'error', data: 'Something wrong!'});
+                    return res.status(401).send({result: 'error', data: 'Something wrong!'});
                 }
+
+                
 
                 // io.emit(`${data.userID}`, {msg: 'new order commited', delivery: data.delivery, step: step} );
                 // res.status(200).send({ result: 'success', data: data });
