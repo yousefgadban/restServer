@@ -1,5 +1,6 @@
 const cors = require('cors')
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const socketController = require('./Socket/socketController');
@@ -42,7 +43,7 @@ const http = require('http')
 const server = http.createServer(app)
 const io = socketio(server, {
     cors: {
-        origin: ['http://localhost:3000']
+        origin: ['https://yousefgadban-restaurant.netlify.app']
     }
 });
 
@@ -53,5 +54,5 @@ const PORT = process.env.PORT || 4000
 server.listen(PORT)
 
 module.exports = {
-    io
+    io,
 }

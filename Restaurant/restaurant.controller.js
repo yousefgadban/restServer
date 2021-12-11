@@ -168,6 +168,7 @@ const addNewAdditionItem = async (req, res) => {
 const getRestaurantData = async (req, res) => {
     const id = req.params.id
     console.log('getRestaurantData', id);
+
     try {
         const data = await restaurantModel.findOne({_id: id}).populate({
             path: 'categories',
@@ -189,6 +190,7 @@ const getRestaurantData = async (req, res) => {
         console.log('errorr');
         res.status(401).send({result: 'error', data: 'Something wrong!'});
     } 
+
 }
 
 
@@ -282,6 +284,48 @@ const getUserRestaurants = async (req, res) => {
         res.status(401).send({result: 'error', data: 'Something wrong!'});
     }
 }
+
+
+// async function getRestaurant(key, callback) {
+
+//     let dataCached = cache.get("restaurantData"+key);
+
+//     console.log('cache', dataCached);
+
+//     if (dataCached) {
+//         console.log('getRestaurant from cache');
+//         return callback(dataCached);
+//     }
+
+//     try {
+//         const data = await restaurantModel.findOne({_id: key}).populate({
+//             path: 'categories',
+//             populate: {
+//                 path: 'items', 
+//                 model: 'item',
+//                 populate: {
+//                     path: 'additions',
+//                     model: 'addition',
+//                     populate: {
+//                         path: 'additionItems',
+//                         model: 'additionItem'
+//                     }
+//                 }
+//             }
+//         });
+
+//         cache.put("restaurantData"+key, data, 30 , function(key, value) {
+//             console.log('cache expired ' + new Date().getTime());
+//         });
+//         dataCached = cache.get("restaurantData"+key);
+
+//         return callback(dataCached);
+//     } catch (e) {
+//         console.log('errorr', e);
+//         return callback({name: 'error'});
+//     } 
+   
+// }
 
 
 module.exports = {

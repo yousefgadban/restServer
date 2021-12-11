@@ -36,7 +36,7 @@ const addNewCall = async (req, res) => {
 
                 // socket
                 const io = require('../server').io;
-                io.emit(`${userID}`, {msg: 'new service commited'} );
+                //io.emit(`${userID}`, {msg: 'new service commited'} );
                 io.emit(`${restaurantID}-calls`, data );
                 res.status(200).send({ result: 'success', data: data });
             }
