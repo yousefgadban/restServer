@@ -5,8 +5,8 @@ const refreshTokenModel = require('./token.model').refreshTokenModel;
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const AT_EXP = '1115s';
-const RT_EXP = '2225s';
+const AT_EXP = '111115s';
+const RT_EXP = '222225s';
 
 const login = async (req, res) => {
     const {email, password} = req.body;
